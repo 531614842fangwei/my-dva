@@ -5,13 +5,24 @@
   "author": "Alex Fang",
   "license": "MIT",
   "private": true,
+  "lint-staged": {
+    "src/**/*.{js,jsx}": "eslint"
+  },
   "scripts": {
-    "start": "roadhog dev"
+    "start": "roadhog dev",
+    "lint": "eslint --fix --ext .js --quiet src"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "babel-plugin-dva-hmr": "^0.4.1",
     "redbox-react": "^1.5.0",
-    "roadhog": "^2.2.0"
+    "roadhog": "^2.2.0",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "lint-staged": "^6.1.0"
   },
   "dependencies": {
     "antd": "^3.2.3",
