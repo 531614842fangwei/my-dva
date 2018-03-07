@@ -4,6 +4,9 @@ module.exports = {
   },
   html: { template: './src/index.ejs' },
 
+  // 加载主题
+  theme: './theme.config.js',
+  browserslist: ['ie 9-11'],
   // 热加载
   env: {
     development: {

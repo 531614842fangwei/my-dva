@@ -23,7 +23,8 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.3.0",
-    "lint-staged": "^6.1.0"
+    "lint-staged": "^6.1.0",
+    "less-vars-to-js": "^1.1.2"
   },
   "dependencies": {
     "antd": "^3.2.3",
