@@ -5,5 +5,5 @@
 
 export default {
   namespace: 'app',
-  state: { user: {} }
+  state: { user: {} },
 }

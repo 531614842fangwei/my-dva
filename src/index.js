@@ -10,7 +10,7 @@ const app = dva({
     effects: true,
   }),
   history: createHistory(),
-  onError (error) {
+  onError(error) {
     message.error(error.message)
   },
 })
