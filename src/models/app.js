@@ -1,9 +1,52 @@
-/* global window */
-/* global document */
-/* global location */
-/* eslint no-restricted-globals: ["error", "event"] */
-
 export default {
   namespace: 'app',
-  state: { user: {} },
+  state: {
+    menuData: [
+      {
+        menuId: '58C5988AC32E4D969BE785EC9048F0A2',
+        menuName: '用户管理中心',
+        menuParentId: '-1',
+        hasMenu: null,
+        menuUrl: 'userManage',
+        menuIcon: 'user',
+        children: [],
+      },
+      {
+        menuId: 'F4621486C44345A3BCC358A176B900C7',
+        menuName: '组织机构管理',
+        menuParentId: '-1',
+        hasMenu: null,
+        menuUrl: 'organization',
+        menuIcon: 'team',
+        children: [],
+      },
+      {
+        menuId: '6DA666AF29514D4CBA13924494A51358',
+        menuName: '字典表管理',
+        menuParentId: '-1',
+        hasMenu: null,
+        menuUrl: 'dictionaryAdmin',
+        menuIcon: 'table',
+        children: [],
+      },
+      {
+        menuId: 'B54983532F62457FA0B572E1F8966DC5',
+        menuName: '角色模板管理',
+        menuParentId: '-1',
+        hasMenu: null,
+        menuUrl: 'roleManage',
+        menuIcon: 'profile',
+        children: [],
+      },
+      {
+        menuId: '106E718C077148A5A5B48600253BF2C2',
+        menuName: '菜单管理',
+        menuParentId: 'NULL',
+        hasMenu: null,
+        menuUrl: 'menuManage',
+        menuIcon: 'bars',
+        children: [],
+      },
+    ],
+  },
 }
