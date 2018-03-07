@@ -1,0 +1,18 @@
+{
+  "name": "roadhog",
+  "version": "1.0.0",
+  "description": "roadhog config test",
+  "author": "Alex Fang",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "roadhog dev"
+  },
+  "devDependencies": {
+    "roadhog": "^2.2.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
