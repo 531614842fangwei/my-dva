@@ -10,4 +10,8 @@ module.exports = {
       extraBabelPlugins: ['dva-hmr'],
     },
   },
+  // 按需加载
+  extraBabelPlugins: [
+    ['import', { libraryName: 'antd', style: true, libraryDirectory: 'es' }],
+  ],
 }
