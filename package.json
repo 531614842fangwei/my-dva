@@ -9,6 +9,8 @@
     "start": "roadhog dev"
   },
   "devDependencies": {
+    "babel-plugin-dva-hmr": "^0.4.1",
+    "redbox-react": "^1.5.0",
     "roadhog": "^2.2.0"
   },
   "dependencies": {
