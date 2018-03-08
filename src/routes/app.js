@@ -1,12 +1,25 @@
 import React from 'react'
 import { connect } from 'dva'
+import { get } from 'lodash'
 import { Layout, Menu, Icon } from 'antd'
 import { Redirect } from 'dva/router'
 import PropTypes from 'prop-types'
 import './app.less'
 
 const { Header, Sider, Content } = Layout
-const getTargetUrl = () => '/home'
+// 获取可用的第一个页面路径
+const getTargetUrl = (menuData) => {
+  let redirectUrl = '/404'
+  const homeApplicationUrl = get(menuData, ['0', 'menuUrl'])
+  const firstMenuUrl = get(menuData, ['0', 'children', '0', 'menuUrl'])
+  if (firstMenuUrl) {
+    return `/${homeApplicationUrl}/${firstMenuUrl}`
+  } else if (homeApplicationUrl) {
+    return `/${homeApplicationUrl}`
+  }
+  return redirectUrl
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -21,10 +34,10 @@ class App extends React.Component {
     const siderCollapsed = this.state.siderCollapsed
     const { location, app } = this.props
     const { pathname } = location
-    const { muenData } = app
+    const { menuData } = app
     if (pathname === '/') {
       // 如果输入的地址为空，应该重定向到目标页面
-      let redirectUrl = getTargetUrl(muenData) // 目标页面链接生成
+      let redirectUrl = getTargetUrl(menuData) // 目标页面链接生成
       return <Redirect to={redirectUrl} />
     }
     return (

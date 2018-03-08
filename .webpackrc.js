@@ -15,6 +15,7 @@ module.exports = {
   },
   // 按需加载
   extraBabelPlugins: [
+    'lodash',
     ['import', { libraryName: 'antd', style: true, libraryDirectory: 'es' }],
   ],
 }
