@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'dva'
 import { get } from 'lodash'
 import { Layout, Menu, Icon } from 'antd'
-import { Redirect } from 'dva/router'
+import { Link, Redirect } from 'dva/router'
 import PropTypes from 'prop-types'
 import './app.less'
 
 const { Header, Sider, Content } = Layout
+const Item = Menu.Item
 // 获取可用的第一个页面路径
 const getTargetUrl = (menuData) => {
   let redirectUrl = '/404'
@@ -34,7 +35,7 @@ class App extends React.Component {
     const siderCollapsed = this.state.siderCollapsed
     const { location, app } = this.props
     const { pathname } = location
-    const { menuData } = app
+    const { menuData, selectedKey } = app
     if (pathname === '/') {
       // 如果输入的地址为空，应该重定向到目标页面
       let redirectUrl = getTargetUrl(menuData) // 目标页面链接生成
@@ -44,19 +45,14 @@ class App extends React.Component {
       <Layout style={{ height: '100%' }}>
         <Sider trigger={null} collapsible collapsed={siderCollapsed}>
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
+          <Menu theme="dark" mode="inline" selectedKeys={[selectedKey]}>
+            {menuData.map(menu => (
+              <Item key={`/${menu.menuUrl}`}>
+                <Icon type="user" />
+                <span>{menu.menuName}</span>
+                <Link to={`/${menu.menuUrl}`} />
+              </Item>
+            ))}
           </Menu>
         </Sider>
         <Layout>
