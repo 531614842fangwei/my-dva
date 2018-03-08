@@ -1,20 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, routerRedux } from 'dva/router'
+import dynamic from 'dva/dynamic'
+
 import App from './routes/app'
-import Home from './routes/home/home'
-import List from './routes/list/list'
+import routerTree from './utils/routerTree'
 
 const { ConnectedRouter } = routerRedux
-const Router = ({ history }) => (
+const Router = ({ history, app }) => (
   <ConnectedRouter history={history}>
     <Route
       path="/"
       render={props => (
         <App {...props}>
           <Switch>
-            <Route exact path="/Home" component={Home} />
-            <Route exact path="/List" component={List} />
+            {routerTree.map(({ path, ...other }) => (
+              <Route exact key={`/${path}`} path={`/${path}`} component={dynamic({ app, ...other })} />
+            ))}
           </Switch>
         </App>
       )}
