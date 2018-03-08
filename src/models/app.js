@@ -1,29 +1,25 @@
+import { getServices } from '../utils'
+
+const services = getServices({
+  getMenuData: 'menuData',
+})
+
+const initialState = {
+  selectedKey: '',
+  menuData: [],
+}
+
 export default {
   namespace: 'app',
-  state: {
-    selectedKey: '',
-    menuData: [
-      {
-        menuId: '58C5988AC32E4D969BE785EC9048F0A2',
-        menuName: '主页',
-        menuParentId: '-1',
-        hasMenu: null,
-        menuUrl: 'home',
-        menuIcon: 'user',
-        children: [],
-      },
-      {
-        menuId: 'F4621486C44345A3BCC358A176B900C7',
-        menuName: '列表页',
-        menuParentId: '-1',
-        hasMenu: null,
-        menuUrl: 'list',
-        menuIcon: 'team',
-        children: [],
-      },
-    ],
-  },
+  state: initialState,
   subscriptions: {
+    setup({ history, dispatch }) {
+      history.listen(({ pathname }) => {
+        if (pathname === '/home') {
+          dispatch({ type: 'getMenuData' })
+        }
+      })
+    },
     watchHistory({ dispatch, history }) {
       return history.listen(({ pathname }) => {
         const key = pathname
@@ -32,6 +28,16 @@ export default {
           .join('/')
         dispatch({ type: 'updateState', payload: { selectedKey: key } })
       })
+    },
+  },
+  effects: {
+    * getMenuData(_, { select, call, put }) {
+      const menuData = yield select(({ app }) => app.menuData)
+      if (menuData.length > 0) {
+        return
+      }
+      const res = yield call(services.getMenuData)
+      yield put({ type: 'updateState', payload: { menuData: res } })
     },
   },
   reducers: {
